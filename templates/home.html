@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style type="text/css">
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      /* background-image: url('https://img.pogo.org/image/content/2018/facial-recognition-gif-v5-o_1150.gif?auto=compress%2Cformat&crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=800&q=80&ratio=1.5&w=1200&s=4e2f6eeb1cc9940aa21f63bb62f2d161'); */
+      background-image: url("https://t3.ftcdn.net/jpg/08/08/25/94/240_F_808259473_qVarQOE1oVfyfTKwXwgYGGhJuA31BWqP.jpg");
+      background-size: cover;
+      font-family: sans-serif;
+      margin-top: 40px;
+      padding: 0;
+      margin: 0;
+    }
+
+    table {
+      border-radius: 20px;
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 86%;
+      margin: auto;
+    }
+
+    td,
+    th {
+      padding: 10px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+
+    <title>Face Recognition Based Attendance System</title>
+  </head>
+
+  <body>
+    <div
+      class="mt-3 text-center"
+      style="background-color: rgba(43, 41, 48, 0.9)"
+    >
+      <h1
+        style="color: white; padding: 11px; font-size: 44px; margin-top: 100px"
+      >
+        Face Recognition Based Attendance System
+      </h1>
+    </div>
+
+    {% if mess %}
+    <p class="text-center" style="color: rgb(86, 235, 151); font-size: 20px">
+      {{ mess }}
+    </p>
+    {% endif %}
+
+    <div class="row text-center" style="padding: 20px; margin: 20px">
+      <div
+        class="col"
+        style="
+          border-radius: 20px;
+          padding: 0px;
+          background-color: rgb(0, 0, 0, 0.8);
+          margin: 0px 10px 10px 10px;
+          min-height: 400px;
+        "
+      >
+        <h2
+          style="
+            border-radius: 20px 20px 0px 0px;
+            background-color: rgb(80, 210, 102);
+            color: white;
+            padding: 10px;
+          "
+        >
+          Today's Attendance <i class="material-icons">assignment</i>
+        </h2>
+        <a style="text-decoration: none; max-width: 300px" href="/start">
+          <button
+            style="
+              font-size: 24px;
+              font-weight: bold;
+              border-radius: 10px;
+              width: 490px;
+              padding: 10px;
+              margin-top: 30px;
+              margin-bottom: 30px;
+            "
+            type="submit"
+            class="btn btn-primary"
+          >
+            Take Attendance <i class="material-icons">beenhere</i>
+          </button>
+        </a>
+        <table style="background-color: white">
+          <tr>
+            <td><b>S No</b></td>
+            <td><b>Name</b></td>
+            <td><b>ID</b></td>
+            <td><b>Date & Time</b></td>
+          </tr>
+          {% if l %} {% for i in range(l) %}
+          <tr>
+            <td>{{ i+1 }}</td>
+            <td>{{ names[i] }}</td>
+            <td>{{ rolls[i] }}</td>
+            <td>{{ times[i] }}</td>
+          </tr>
+          {% endfor %} {% endif %}
+        </table>
+      </div>
+
+      <div
+        class="col"
+        style="
+          border-radius: 20px;
+          padding: 0px;
+          background-color: rgb(0, 0, 0, 0.8);
+          margin: 0px 10px 10px 10px;
+          height: 400px;
+        "
+      >
+        <form id="addUserForm">
+          <h2
+            style="
+              border-radius: 20px 20px 0px 0px;
+              background-color: rgb(88, 200, 51);
+              color: white;
+              padding: 10px;
+            "
+          >
+            Add New User <i class="material-icons">control_point_duplicate</i>
+          </h2>
+          <label style="font-size: 20px; color: white"
+            ><b>Enter New User Name*</b></label
+          >
+          <br />
+          <input
+            type="text"
+            id="newusername"
+            name="newusername"
+            style="
+              font-size: 20px;
+              margin-top: 10px;
+              margin-bottom: 10px;
+              border-radius: 10px;
+              width: 300px;
+              height: 50px;
+            "
+            required
+          />
+          <br />
+          <label style="font-size: 20px; color: white"
+            ><b>Enter New User Id*</b></label
+          >
+          <br />
+          <input
+            type="text"
+            id="newusereid"
+            name="newuserid"
+            style="
+              font-size: 20px;
+              margin-top: 10px;
+              margin-bottom: 10px;
+              border-radius: 10px;
+              width: 300px;
+              height: 50px;
+            "
+            required
+          />
+          <br />
+          <button
+            style="
+              width: 232px;
+              margin-top: 20px;
+              font-size: 20px;
+              border-radius: 10px;
+              width: 300px;
+              height: 50px;
+            "
+            type="submit"
+            class="btn btn-dark"
+          >
+            Add New User
+          </button>
+          <br />
+          <h5 id="totalUsers" style="padding: 25px; color: white">
+            <i>Total Users in Database: {{totalreg}}</i>
+          </h5>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Handle form submission using AJAX
+      document
+        .getElementById("addUserForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent page reload on form submit
+
+          var formData = new FormData(this);
+
+          fetch("/add", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json()) // Expecting JSON response
+            .then((data) => {
+              // Update the displayed total number of users
+              document.getElementById(
+                "totalUsers"
+              ).innerHTML = `<i>Total Users in Database: ${data.totalreg}</i>`;
+
+              // Optionally, you can add the new user to the table here (if you want to show it immediately)
+              var newRow = `<tr>
+                                <td>${data.sno}</td>
+                                <td>${data.username}</td>
+                                <td>${data.userid}</td>
+                                <td>${new Date().toLocaleString()}</td>
+                              </tr>`;
+              document
+                .querySelector("table")
+                .insertAdjacentHTML("beforeend", newRow);
+            })
+            .catch((error) => console.error("Error:", error));
+        });
+    </script>
+  </body>
+</html>
